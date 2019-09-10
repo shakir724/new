@@ -4,6 +4,9 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
 
 from validators import validateChar
 
+import uuid
+
+
 class AccountManager(BaseUserManager):
     def create_user(self, email, password=None, is_active=True, is_admin=False, firstName=None, lastName=None):
         if not email:
@@ -16,6 +19,7 @@ class AccountManager(BaseUserManager):
         user_obj.active = is_active
         user_obj.firstName = firstName
         user_obj.lastName = lastName
+        user_obj.uid = uuid.uuid4()
         user_obj.set_password(password)
         user_obj.last_login=now()
         user_obj.save(using=self._db)
@@ -33,12 +37,13 @@ class AccountManager(BaseUserManager):
 
 
 class Accounts(AbstractBaseUser):
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=64, unique=True)
     firstName = models.CharField(max_length=16, blank=True, validators=[validateChar])          # first name
     lastName = models.CharField(max_length=16, blank=True, validators=[validateChar])           # last name
     active = models.BooleanField(default=True)                                                  # can login
     admin = models.BooleanField(default=False)                                                  # superuser
     dateJoined = models.DateTimeField(default=now, editable=False)
+    uid = models.CharField(max_length=64, editable=False)
 
     objects = AccountManager()
 
