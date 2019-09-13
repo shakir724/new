@@ -14,5 +14,5 @@ class AnonymousUser(BasePermission):
     def has_permission(self, request, view):
         if request.method == 'POST':
             if not request.user.is_authenticated:
-                return True
+                return request.data.get('admin', False) == 'False'
         return False

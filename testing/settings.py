@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '%pff%sgx(=7v-y@@tks_k*t)m3an!3#*(c_@jqw6#u)w7vr3*='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     # Third party libraries
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
 
     # Apps
     'accounts',
@@ -89,6 +91,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+# DRF Settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 
@@ -148,9 +158,16 @@ CORS_ALLOW_HEADERS = [
     'Authorization',
     'X-CSRF-Token',
 ]
+
 CORS_ORIGIN_WHITELIST = (
     '*',
     'your-domain.com',
     'your-bucket-here.s3-us-west-2.amazonaws.com',
     'http://localhost:3000/'
 )
+
+# JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
+}

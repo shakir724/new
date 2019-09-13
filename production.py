@@ -12,7 +12,7 @@ while True:
         os.system('find . -path "*/migrations/*.pyc"  -delete')
         print('Migration Cleared')
 
-      os.remove('mydatabase')
+      os.remove('db.sqlite3')
       print('Database Deleted')
 
       os.system('python manage.py makemigrations')

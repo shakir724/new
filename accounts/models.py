@@ -77,10 +77,10 @@ class Accounts(AbstractBaseUser):
         return self.active
 
     def has_perm(self, perm, obj=None):
-        return self.admin
+        return self.active
 
     def has_perms(self, perm, obj=None):
-        return True
+        return self.active
 
     def has_module_perms(self, app_label):
-        return self.admin
+        return self.active

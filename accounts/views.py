@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.status import (HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_405_METHOD_NOT_ALLOWED)
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 from django.shortcuts import get_object_or_404
 
@@ -10,7 +10,7 @@ from .serializers import AccountSerializer
 from .permissions import (OwnAccount, AnonymousUser)
 
 class AccountViewSet(ModelViewSet):
-    permission_classes = (OwnAccount|AnonymousUser|IsAdminUser,)
+    permission_classes = (AnonymousUser|(IsAuthenticated & (OwnAccount|IsAdminUser)),)
 
     def create(self, request, *args, **kwargs):
         account = Accounts.objects.create_user(email=request.data['email'], password=request.data['password'], is_admin=request.data.get('admin', False), firstName=request.data.get('firstName', ''), lastName=request.data.get('lastName', ''))
