@@ -1,0 +1,89 @@
+/* constand height for sectin i.e taking 90% of the screen */
+.section-1 {
+  height: 100%;
+  width: 100%;
+}
+
+.s1-h1 {
+  color: white;
+  text-align: left;
+}
+.s1-h4 {
+  color: white;
+  text-align: left;
+}
+
+@media (min-width: 0px) and (max-width: 400px) {
+  /* decrease size of button once screen size decreases from 400px */
+}
+
+/* these are for hiding slider and videos */
+@media (min-width: 0px) and (max-width: 745px) {
+  .section-1-p1 {
+    display: none;
+  }
+  .section-1-p2 {
+    display: contents;
+  }
+}
+
+@media (min-width: 746px) {
+  .section-1-p2 {
+    display: none;
+  }
+  .section-1-p1 {
+    display: contents;
+  }
+}
+/* -------------------------section video -------------------------------------------------- */
+.section-1-p1 {
+  height: 90vh;
+  width: 100%;
+}
+
+#sec-1-btn1,
+#sec-1-btn2 {
+  height: 35px;
+  width: 120px;
+}
+#sec-1-btn2 {
+  margin-left: 40px;
+}
+
+.s1-btn-con {
+  padding-top: 20px;
+}
+
+/* placing header text and buttons above the video */
+.s1-com {
+  z-index: 2;
+  position: absolute;
+  top: 350px;
+  left: 0px;
+  padding-left: 10%;
+}
+.vid-el {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+/* ---------------------------------section - image ----------------------------------------------- */
+
+.section-1-p2 {
+  height: 100%;
+  width: 100%;
+}
+.vid-el {
+  width: 100%;
+  height: 100%;
+}
+
+.s1-p1 {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  text-align: center;
+  margin-top: 20px;
+  background-image: url("./m.jpg");
+}
+
+/* --------------------------button customize-------------------------------------------- */

@@ -1,0 +1,51 @@
+.FooterInstaColor {
+  color: pink;
+}
+.FooterFbColor {
+  color: darkblue;
+}
+.FooterLinkedInColor {
+  color: rgb(31, 92, 161);
+}
+.FooterTwitterColor {
+  color: rgb(0, 119, 255);
+}
+/* .FooterText {
+  padding-right: 20px;
+} */
+footer {
+  /* height: 200px; */
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+}
+footer {
+  background: #16222a;
+  background: -webkit-linear-gradient(59deg, #3a6073, #16222a);
+  background: linear-gradient(59deg, #3a6073, #16222a);
+  color: white;
+  margin-top: 100px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer a:hover {
+  color: #fa944b;
+  text-decoration: none;
+}
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #ffffff;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}

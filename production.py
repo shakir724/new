@@ -22,7 +22,8 @@ while True:
       print('Migrations Done')
 
       import shutil
-      shutil.rmtree('media')
+      if os.path.exists('media'):
+        shutil.rmtree('media')
 
     break
 

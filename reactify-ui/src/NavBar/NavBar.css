@@ -1,0 +1,25 @@
+.Navigation {
+  background-color: white;
+}
+a.NavText {
+  font-size: 15px;
+  color: grey;
+  padding-right: 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+a .NavText:hover {
+  color: gray;
+}
+.iconColor {
+  color: black;
+}
+@media (max-width: 991px) {
+  .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+  }
+}

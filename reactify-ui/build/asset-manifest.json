@@ -1,4 +1,11 @@
 {
-  "main.js": "static/js/main.16c48633.js",
-  "main.js.map": "static/js/main.16c48633.js.map"
+  "main.css": "static/css/main.4f34fd4b.css",
+  "main.css.map": "static/css/main.4f34fd4b.css.map",
+  "main.js": "static/js/main.a21f0a63.js",
+  "main.js.map": "static/js/main.a21f0a63.js.map",
+  "static\\media\\m.jpg": "static/media/m.97b58da1.jpg",
+  "static\\media\\shop.svg": "static/media/shop.44c1b0b7.svg",
+  "static\\media\\todo.svg": "static/media/todo.23b783df.svg",
+  "static\\media\\website.svg": "static/media/website.03bec717.svg",
+  "static\\media\\wed-registry.svg": "static/media/wed-registry.df73a254.svg"
 }

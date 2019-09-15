@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # Third party libraries
     'corsheaders',
     'rest_framework',
-    'rest_framework_simplejwt',
 
     # Apps
     'accounts',

@@ -1,0 +1,22 @@
+.Image {
+  height: 100%;
+  width: 85%;
+}
+.AboutUsDiv {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.ab-r {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 50px;
+}
+#ab-us-h {
+  text-align: center;
+  padding-top: 36px;
+  padding-bottom: 16px;
+}
+#ab-us-p {
+  text-align: center;
+}
