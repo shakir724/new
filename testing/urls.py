@@ -34,15 +34,19 @@ router.register('SocialMedia', settings_view.SocialMediaViewSet, base_name='Soci
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
+
+    re_path(r'^auth/(?P<ofType>[0-9A-Za-z_\-]+)/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', accounts_view.Authenticate.as_view(), name='auth'),
+    re_path(r'^reset/(?P<ofType>[0-9A-Za-z_\-]+)/(?P<data>[0-9A-Za-z_\-]+)/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', accounts_view.Authenticate.as_view(), name='reset'),
+
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('', TemplateView.as_view(template_name='react.html')),
+    re_path(r'^', TemplateView.as_view(template_name='react.html')),
     re_path(r'^dashboard/', TemplateView.as_view(template_name='react.html')),
     re_path(r'^login/', TemplateView.as_view(template_name='react.html')),
     re_path(r'^register/', TemplateView.as_view(template_name='react.html')),
 ]
 
-# media url
+# media url and static url
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

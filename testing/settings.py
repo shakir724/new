@@ -170,3 +170,10 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
 }
+
+# Email Settings
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'patrick.thakare123@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587

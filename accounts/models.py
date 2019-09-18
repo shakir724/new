@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager)
+from django.core.mail import send_mail
 
 from validators import validateChar
 
@@ -8,7 +9,7 @@ import uuid
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, is_active=True, is_admin=False, firstName=None, lastName=None):
+    def create_user(self, email, password=None, is_active=False, is_admin=False, firstName='', lastName=''):
         if not email:
             raise ValueError('User must have an email address')
         if not password:
@@ -25,13 +26,27 @@ class AccountManager(BaseUserManager):
         user_obj.save(using=self._db)
         return user_obj
 
+    def create_dummy_user(self, email, password=None, is_active=False, is_admin=False, firstName='', lastName=''):
+        if not email:
+            raise ValueError('User must have an email address')
+        if not password:
+            raise ValueError('User must have a password')
+
+        user_obj = self.model(email=self.normalize_email(email))
+        user_obj.admin = is_admin
+        user_obj.active = is_active
+        user_obj.firstName = firstName
+        user_obj.lastName = lastName
+        user_obj.uid = uuid.uuid4()
+        user_obj.set_password(password)
+        user_obj.last_login=now()
+        return user_obj
+
     def create_superuser(self, email, password=None):
         user = self.create_user(
             email,
             password=password,
             is_admin=True,
-            firstName='',
-            lastName=''
         )
         return user
 
@@ -82,5 +97,17 @@ class Accounts(AbstractBaseUser):
     def has_perms(self, perm, obj=None):
         return self.active
 
+    
     def has_module_perms(self, app_label):
         return self.active
+
+    @classmethod
+    def email_user(self, to, subject, message, *args, **kwargs):
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email='Memorial Marriage',
+            recipient_list=to,
+            fail_silently=False,
+            **kwargs
+        )
